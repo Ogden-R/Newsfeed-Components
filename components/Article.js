@@ -89,30 +89,73 @@ const data = [
   }
 ];
 
-/*
-  Step 1: Write a component called 'articleMaker' to create an article.
-  Your component is a function that takes an article object as its only argument,
-  and returns a DOM node looking like the one below:
+const articles = document.querySelector('.articles');
+//   Step 1: Write a component called 'articleMaker' to create an article.
+//   Your component is a function that takes an article object as its only argument,
+//   and returns a DOM node looking like the one below:
 
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph }) {
+  const card = document.createElement('div');
+  const cardBar = document.createElement ('div');
+  const cardTitle = document.createElement('h2');
+  const cardExpand = document.createElement('span');
+  const cardDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+ 
+  card.appendChild(cardBar)
+  card.appendChild(cardTitle);
+  card.appendChild(cardExpand);
+  card.appendChild(cardDate);
+  card.appendChild(para1);
+  card.appendChild(para2);
+  card.appendChild(para3);
+  
 
-    {three separate paragraph elements}
-    <p></p>
-    <p></p>
-    <p></p>
-    <span class="expandButton">+</span>
-  </div>
+  card.classList.add('article');
+  cardDate.classList.add('date');
+  cardExpand.classList.toggle('expandButton', 'close');
 
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
-  This listener should toggle the class 'article-open' on div.article.
+  cardTitle.textContent = title;
+  cardDate.textContent = date;
+  para1.textContent = firstParagraph;
+  para2.textContent = secondParagraph;
+  para3.textContent = thirdParagraph;
+  
 
-  Step 3: Don't forget to return something from your function!
+  card.addEventListener('click', () => {
+    card.classList.toggle('article-open');
+    cardExpand.classList.toggle('close');
+  })
+  return card;
+}
+//   <div class="article">
+//     <h2>{title of the article}</h2>
+//     <p class="date">{date of the article}</p>
 
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
+//     {three separate paragraph elements}
+//     <p>paragraph1</p>
+//     <p>paragraph2</p>
+//     <p>paragraph3</p>
+//     <span class="expandButton">+</span>
+//   </div>
 
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
-  Refresh the page to see the new article.
-*/
+//   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
+//   This listener should toggle the class 'article-open' on div.article.
+
+//   Step 3: Don't forget to return something from your function!
+
+//   Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
+//   to create a div.article element and append it to the DOM inside div.articles (see index.html).
+  const cardElements = data.map(cardElem => {
+    return articleMaker(cardElem);
+  })
+
+  cardElements.forEach(cardElement => {
+    articles.appendChild(cardElement);
+  })
+
+//   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+//   Refresh the page to see the new article.
+// 
