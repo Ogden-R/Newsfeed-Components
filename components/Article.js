@@ -96,7 +96,6 @@ const articles = document.querySelector('.articles');
 
 function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph }) {
   const card = document.createElement('div');
-  const cardBar = document.createElement ('div');
   const cardTitle = document.createElement('h2');
   const cardExpand = document.createElement('span');
   const cardDate = document.createElement('p');
@@ -104,29 +103,27 @@ function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParag
   const para2 = document.createElement('p');
   const para3 = document.createElement('p');
  
-  card.appendChild(cardBar)
   card.appendChild(cardTitle);
-  card.appendChild(cardExpand);
   card.appendChild(cardDate);
   card.appendChild(para1);
   card.appendChild(para2);
   card.appendChild(para3);
-  
+  card.appendChild(cardExpand);
 
   card.classList.add('article');
   cardDate.classList.add('date');
-  cardExpand.classList.toggle('expandButton', 'close');
+  cardExpand.classList.add('expandButton');
 
   cardTitle.textContent = title;
   cardDate.textContent = date;
   para1.textContent = firstParagraph;
   para2.textContent = secondParagraph;
   para3.textContent = thirdParagraph;
+  cardExpand.textContent = '+';
   
 
-  card.addEventListener('click', () => {
+  cardExpand.addEventListener('click', () => {
     card.classList.toggle('article-open');
-    cardExpand.classList.toggle('close');
   })
   return card;
 }
