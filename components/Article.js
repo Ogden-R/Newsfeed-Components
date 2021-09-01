@@ -99,7 +99,9 @@ const data = [
     <p class="date">{date of the article}</p>
 
     {three separate paragraph elements}
-
+    <p></p>
+    <p></p>
+    <p></p>
     <span class="expandButton">+</span>
   </div>
 
